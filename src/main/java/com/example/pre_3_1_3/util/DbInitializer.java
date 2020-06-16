@@ -4,7 +4,7 @@ import com.example.pre_3_1_3.dao.RoleDao;
 import com.example.pre_3_1_3.dao.UserDao;
 import com.example.pre_3_1_3.model.Role;
 import com.example.pre_3_1_3.model.User;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -12,12 +12,18 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Component
-@RequiredArgsConstructor
 public class DbInitializer {
 
     private final UserDao userDao;
     private final RoleDao roleDao;
     private final PasswordEncoder passwordEncoder;
+
+    public DbInitializer(UserDao userDao, RoleDao roleDao, PasswordEncoder passwordEncoder) {
+        this.userDao = userDao;
+        this.roleDao = roleDao;
+        this.passwordEncoder = passwordEncoder;
+        initRepo();
+    }
 
     public void initRepo() {
         roleDao.save(new Role("ADMIN"));

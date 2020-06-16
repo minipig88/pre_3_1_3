@@ -13,5 +13,4 @@ public interface UserService {
     List<UserDto> findAllUsers();
     Set<String> findAllRoleNames();
     void deleteUserById(Long id);
-    void deleteUser(UserDto userDto);
 }

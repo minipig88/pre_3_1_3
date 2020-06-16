@@ -75,11 +75,6 @@ public class UserServiceImpl implements UserService {
         userDao.deleteById(id);
     }
 
-    @Override
-    public void deleteUser(UserDto userDto) {
-        userDao.delete(getUserFromDto(userDto));
-    }
-
     private User getUserFromDto(UserDto userDto) {
         return new User(userDto.getId(), userDto.getEmail(), userDto.getPassword(),
                 userDto.getFirstName(), userDto.getLastName(), userDto.getAge(),
